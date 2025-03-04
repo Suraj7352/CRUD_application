@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block body %}
+  <div class="container">
+    <h2>Login</h2>
+    
+    <form method="POST" class="login-form">
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" name="username" required class="input-field">
+      </div>
+      
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" name="password" required class="input-field">
+      </div>
+      
+      <button type="submit" class="button primary-btn">Login</button>
+    </form>
+    
+    <p class="redirect-link">Don't have an account? <a href="/register">Register here</a></p>
+  </div>
+
+  <style>
+    .container {
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 50px 20px;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 2.5em;
+      color: #1d3557;
+      margin-bottom: 40px;
+    }
+
+    .login-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 20px;
+      border-radius: 8px;
+      background-color: #f9f9f9;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group {
+      text-align: left;
+    }
+
+    .form-group label {
+      font-size: 1.2em;
+      color: #1d3557;
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    .input-field {
+      padding: 12px;
+      font-size: 1em;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+      width: 100%;
+      margin-top: 5px;
+      box-sizing: border-box;
+    }
+
+    .input-field:focus {
+      border-color: #e63946;
+      outline: none;
+    }
+
+    .button {
+      padding: 12px;
+      font-size: 1.1em;
+      border-radius: 5px;
+      cursor: pointer;
+      background-color: #e63946;
+      color: white;
+      border: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .button:hover {
+      background-color: #d62828;
+    }
+
+    .redirect-link {
+      font-size: 1em;
+      margin-top: 20px;
+    }
+
+    .redirect-link a {
+      text-decoration: none;
+      color: #e63946;
+    }
+
+    .redirect-link a:hover {
+      text-decoration: underline;
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+      .container {
+        padding: 30px 15px;
+      }
+
+      h2 {
+        font-size: 2em;
+      }
+
+      .input-field {
+        font-size: 1em;
+      }
+
+      .button {
+        width: 100%;
+      }
+    }
+  </style>
+{% endblock %}

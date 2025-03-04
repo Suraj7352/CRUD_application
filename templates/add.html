@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Todo{% endblock %}
+
+{% block body %}
+  <div class="container">
+    <h1>Add Todo</h1>
+    <form action="/add" method="POST">
+      <div class="form-group">
+        <input type="text" name="title" placeholder="Todo Title" required>
+      </div>
+      <div class="form-group">
+        <textarea name="description" placeholder="Todo Description" required></textarea>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="button">Add Todo</button>
+      </div>
+    </form>
+  </div>
+
+  <style>
+    /* Form Container */
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 50px 20px;
+    }
+
+    /* Heading */
+    h1 {
+      text-align: center;
+      color: #1d3557;
+      font-size: 2.5em;
+      margin-bottom: 1.5em;
+    }
+
+    /* Form Group */
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    /* Input Fields and Textarea */
+    form input, form textarea {
+      width: 100%;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 1.1em;
+      color: #333;
+      background-color: #f9f9f9;
+      transition: border 0.3s ease, background-color 0.3s ease;
+    }
+
+    /* Focus Effect on Input Fields */
+    form input:focus, form textarea:focus {
+      border-color: #e63946;
+      background-color: #fff;
+      outline: none;
+    }
+
+    /* Textarea Specific Styles */
+    form textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    /* Button Styles */
+    button {
+      background-color: #e63946;
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.1em;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      width: 100%;
+      text-align: center;
+    }
+
+    button:hover {
+      background-color: #d62828;
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+      .container {
+        padding: 30px 15px;
+      }
+    }
+  </style>
+{% endblock %}

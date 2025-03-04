@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+  <div class="container">
+    <h2>Create an Account</h2>
+    
+    <form method="POST" class="register-form" id="registerForm" onsubmit="return validatePasswords()">
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" name="username" required class="input-field">
+      </div>
+      
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" name="password" required class="input-field" id="password">
+      </div>
+      
+      <div class="form-group">
+        <label for="confirm-password">Confirm Password:</label>
+        <input type="password" name="confirm-password" required class="input-field" id="confirm-password">
+        <span id="password-error" style="color: red; display: none;">Passwords do not match</span>
+      </div>
+      
+      <button type="submit" class="button primary-btn">Register</button>
+    </form>
+    
+    <p class="redirect-link">Already have an account? <a href="/login">Login here</a></p>
+  </div>
+
+  <style>
+    .container {
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 50px 20px;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 2.5em;
+      color: #1d3557;
+      margin-bottom: 40px;
+    }
+
+    .register-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 20px;
+      border-radius: 8px;
+      background-color: #f9f9f9;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group {
+      text-align: left;
+    }
+
+    .form-group label {
+      font-size: 1.2em;
+      color: #1d3557;
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    .input-field {
+      padding: 12px;
+      font-size: 1em;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+      width: 100%;
+      margin-top: 5px;
+      box-sizing: border-box;
+    }
+
+    .input-field:focus {
+      border-color: #e63946;
+      outline: none;
+    }
+
+    .button {
+      padding: 12px;
+      font-size: 1.1em;
+      border-radius: 5px;
+      cursor: pointer;
+      background-color: #e63946;
+      color: white;
+      border: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .button:hover {
+      background-color: #d62828;
+    }
+
+    .redirect-link {
+      font-size: 1em;
+      margin-top: 20px;
+    }
+
+    .redirect-link a {
+      text-decoration: none;
+      color: #e63946;
+    }
+
+    .redirect-link a:hover {
+      text-decoration: underline;
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+      .container {
+        padding: 30px 15px;
+      }
+
+      h2 {
+        font-size: 2em;
+      }
+
+      .input-field {
+        font-size: 1em;
+      }
+
+      .button {
+        width: 100%;
+      }
+    }
+  </style>
+
+  <script>
+    // Function to validate that passwords match before submitting the form
+    function validatePasswords() {
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirm-password').value;
+      const errorMessage = document.getElementById('password-error');
+      
+      // If passwords do not match
+      if (password !== confirmPassword) {
+        errorMessage.style.display = 'inline'; // Show error message
+        return false; // Prevent form submission
+      }
+      
+      errorMessage.style.display = 'none'; // Hide error message if passwords match
+      return true; // Allow form submission
+    }
+  </script>
+{% endblock %}

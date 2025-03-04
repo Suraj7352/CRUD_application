@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+{% block title %}Update Todo{% endblock %}
+
+{% block body %}
+  <div class="container">
+    <h1>Update Todo</h1>
+    <form action="/update/{{ todo.id }}" method="POST" class="form">
+      
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" name="title" value="{{ todo.title }}" required class="input-field">
+      </div>
+      
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea name="description" required class="input-field">{{ todo.description }}</textarea>
+      </div>
+
+      <button type="submit" class="button primary-btn">Update Todo</button>
+    </form>
+  </div>
+
+  <style>
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 50px 20px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.5em;
+      color: #1d3557;
+      margin-bottom: 30px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      font-size: 1.2em;
+      color: #1d3557;
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    .input-field {
+      width: 100%;
+      padding: 12px;
+      font-size: 1em;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+      box-sizing: border-box;
+      margin-top: 5px;
+    }
+
+    .input-field:focus {
+      border-color: #e63946;
+      outline: none;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 12px 25px;
+      font-size: 1.1em;
+      border-radius: 5px;
+      text-align: center;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    /* Primary Button */
+    .primary-btn {
+      background-color: #e63946;
+      color: white;
+    }
+
+    .primary-btn:hover {
+      background-color: #d62828;
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+      .container {
+        padding: 30px 15px;
+      }
+
+      h1 {
+        font-size: 2em;
+      }
+
+      .input-field {
+        font-size: 1em;
+      }
+    }
+  </style>
+{% endblock %}

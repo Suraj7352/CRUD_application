@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+
+{% block title %}Search Todos{% endblock %}
+
+{% block body %}
+  <div class="container">
+    <h2>Search Todos</h2>
+
+    <!-- Search form -->
+    <form method="POST" class="search-form">
+      <input type="text" name="query" placeholder="Search by title or description" required class="input-field">
+      <button type="submit" class="button primary-btn">Search</button>
+    </form>
+
+    {% if todos %}
+      <h3>Search Results:</h3>
+      <ul class="todos-list">
+        {% for todo in todos %}
+          <li class="todo-item">
+            <div class="todo-info">
+              <h4>{{ todo.title }}</h4>
+              <p>{{ todo.description }}</p>
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+    {% elif request.method == 'POST' %}
+      <p class="no-results">No results found for your search.</p>
+    {% endif %}
+  </div>
+
+  <style>
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 50px 20px;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 2.5em;
+      color: #1d3557;
+      margin-bottom: 30px;
+    }
+
+    .search-form {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+
+    .input-field {
+      padding: 12px 20px;
+      font-size: 1em;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+      width: 70%;
+      margin-right: 10px;
+    }
+
+    .input-field:focus {
+      border-color: #e63946;
+      outline: none;
+    }
+
+    .button {
+      padding: 12px 20px;
+      font-size: 1.1em;
+      border-radius: 5px;
+      cursor: pointer;
+      background-color: #e63946;
+      color: white;
+      border: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .button:hover {
+      background-color: #d62828;
+    }
+
+    .todos-list {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .todo-item {
+      background-color: #f9f9f9;
+      margin-bottom: 20px;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .todo-info h4 {
+      font-size: 1.5em;
+      color: #1d3557;
+    }
+
+    .todo-info p {
+      color: #333;
+    }
+
+    .no-results {
+      text-align: center;
+      color: #e63946;
+      font-size: 1.2em;
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+      .search-form {
+        flex-direction: column;
+      }
+
+      .input-field {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+
+      .button {
+        width: 100%;
+      }
+
+      h2 {
+        font-size: 2em;
+      }
+    }
+  </style>
+{% endblock %}

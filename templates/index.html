@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+
+{% block title %}My Todos{% endblock %}
+
+{% block body %}
+  <div class="container">
+    <h1>My Todos</h1>
+    <a href="/add" class="button primary-btn">Add a new Todo</a>
+    
+    {% if todos %}
+      <ul class="todos-list">
+        {% for todo in todos %}
+          <li class="todo-item">
+            <div class="todo-info">
+              <h3>{{ todo.title }}</h3>
+              <p>{{ todo.description }}</p>
+            </div>
+            <div class="todo-actions">
+              <a href="/update/{{ todo.id }}" class="button secondary-btn">Edit</a>
+              <a href="/delete/{{ todo.id }}" class="button danger-btn" onclick="return confirm('Are you sure you want to delete this todo?')">Delete</a>
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No todos found. Start by adding a new todo!</p>
+    {% endif %}
+  </div>
+
+  <style>
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 50px 20px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.5em;
+      color: #1d3557;
+      margin-bottom: 30px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 12px 25px;
+      font-size: 1em;
+      border-radius: 5px;
+      text-align: center;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    /* Primary Button */
+    .primary-btn {
+      background-color: #e63946;
+      color: white;
+      margin-bottom: 20px;
+    }
+
+    .primary-btn:hover {
+      background-color: #d62828;
+    }
+
+    /* Secondary Button */
+    .secondary-btn {
+      background-color: #f1faee;
+      color: #1d3557;
+      margin-right: 10px;
+    }
+
+    .secondary-btn:hover {
+      background-color: #a8dadc;
+    }
+
+    /* Danger Button */
+    .danger-btn {
+      background-color: #d62828;
+      color: white;
+    }
+
+    .danger-btn:hover {
+      background-color: #e63946;
+    }
+
+    .todos-list {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .todo-item {
+      background-color: #f9f9f9;
+      margin-bottom: 20px;
+      padding: 20px;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s ease;
+    }
+
+    .todo-item:hover {
+      transform: scale(1.02);
+    }
+
+    .todo-info h3 {
+      font-size: 1.5em;
+      color: #1d3557;
+    }
+
+    .todo-info p {
+      color: #333;
+    }
+
+    .todo-actions a {
+      margin-left: 10px;
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+      .container {
+        padding: 30px 15px;
+      }
+
+      h1 {
+        font-size: 2em;
+      }
+      
+      .todo-item {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .todo-actions {
+        margin-top: 10px;
+        text-align: left;
+      }
+    }
+  </style>
+{% endblock %}
